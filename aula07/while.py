@@ -6,4 +6,3 @@ while True:
     if nome == 'x' or nome == 'X':
         break
     print(f'Bem-vindo(a), {nome}')
-print('Até logo!')
