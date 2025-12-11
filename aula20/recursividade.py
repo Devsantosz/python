@@ -17,6 +17,6 @@ if __name__ == '__main__':
     try:
         res = fatorial(x)
     except RecursionError:
-        print('Numero muito grande para calcular o fatorial')
+        print('Numero muito grande para calcular o fatorial ou numero negativo!')
     else:
         print(f'O fatorial de {x} é igual a {res}')
