@@ -1,0 +1,110 @@
+📐 2️⃣ Os 3 jeitos de alinhar (layout managers)
+
+No Tkinter você tem 3 sistemas de alinhamento:
+
+Método	Quando usar
+pack()	simples, rápido
+grid()	layout organizado (recomendado)
+place()	posição exata (evite no começo)
+
+-----------
+
+3️⃣ pack() – blocos empilhados
+Exemplo: blocos verticais
+import tkinter as tk
+
+janela = tk.Tk()
+janela.geometry("400x300")
+
+topo = tk.Frame(janela, bg="red", height=50)
+topo.pack(fill="x")
+
+conteudo = tk.Frame(janela, bg="blue")
+conteudo.pack(fill="both", expand=True)
+
+rodape = tk.Frame(janela, bg="green", height=40)
+rodape.pack(fill="x")
+
+janela.mainloop()
+
+
+📌 fill → ocupa espaço
+📌 expand=True → cresce junto
+
+
+-------------
+
+grid() – alinhamento profissional
+Exemplo: layout em colunas
+import tkinter as tk
+
+janela = tk.Tk()
+janela.geometry("400x300")
+
+container = tk.Frame(janela)
+container.pack(expand=True)
+
+tk.Label(container, text="Usuário").grid(row=0, column=0, sticky="e")
+tk.Entry(container).grid(row=0, column=1)
+
+tk.Label(container, text="Senha").grid(row=1, column=0, sticky="e")
+tk.Entry(container, show="*").grid(row=1, column=1)
+
+janela.mainloop()
+
+
+📌 row → linha
+📌 column → coluna
+📌 sticky → alinhamento (n, s, e, w)
+
+-------------------------------
+
+5️⃣ Alinhamento fino com sticky
+sticky	Efeito
+n	topo
+s	baixo
+e	direita
+w	esquerda
+nswe	estica tudo
+
+Exemplo:
+
+entry.grid(row=0, column=1, sticky="we")
+
+-----------------------------------------
+
+6️⃣ Controlando tamanho das colunas
+container.columnconfigure(0, weight=1)
+container.columnconfigure(1, weight=2)
+
+
+📌 weight = proporção (tipo flexbox)
+
+----------------------------------------
+
+7️⃣ Blocos dentro de blocos (layout real)
+janela = tk.Tk()
+janela.geometry("500x400")
+
+main = tk.Frame(janela)
+main.pack(fill="both", expand=True)
+
+esquerda = tk.Frame(main, bg="#2d2d2d", width=150)
+esquerda.pack(side="left", fill="y")
+
+direita = tk.Frame(main, bg="#1e1e1e")
+direita.pack(side="right", fill="both", expand=True)
+
+janela.mainloop()
+
+
+📌 Sidebar + conteúdo (padrão de app)
+
+----------------------------------------------
+
+8️⃣ Regra de ouro (grave isso)
+
+✔ Frames organizam
+✔ grid = layout sério
+✔ pack = layout simples
+✔ um layout por frame
